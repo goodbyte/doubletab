@@ -1,0 +1,69 @@
+{
+	"manifest_version": 1,
+	"type": "WebApp",
+	"meta": {
+		"name": "Double Tab",
+		"version": "1.0.6",
+		"minimum-overwolf-version": "0.103.4",
+		"author": "goodbyte",
+		"icon": "IconMouseOver.png",
+		"icon_gray": "IconMouseNormal.png",
+		"description": "Live CS:GO Stats"
+	},
+	"permissions": ["Extensions", "GameInfo", "Hotkeys", "Profile", "Streaming"],
+	"data": {
+		"start_window": "MainWindow",
+		"windows": {
+			"MainWindow": {
+				"file": "Files/main.window.html",
+				"size": {
+					"width": 850,
+					"height": 525
+				},
+				"min_size": {
+					"width": 750,
+					"height": 525
+				},
+				"transparent": true,
+				"show_in_taskbar": false,
+				"grab_keyboard_focus": false,
+				"block_top_window_navigation": true,
+				"popup_blocker": true
+			},
+			"NotificationWindow": {
+				"file": "Files/notification.window.html",
+				"size": {
+					"width": 340,
+					"height": 160
+				},
+				"transparent": true,
+				"show_in_taskbar": false,
+				"in_game_only": true,
+				"grab_keyboard_focus": false,
+				"block_top_window_navigation": true,
+				"popup_blocker": true
+			}
+		},
+		"hotkeys": {
+			"toggle": {
+				"title": "Toggle visibility",
+				"action-type": "custom",
+				"default": "Tab",
+				"passthrough": true
+			}
+		},
+		"game_events": [7764],
+		"launch_events": [
+			{
+				"event": "GameLaunch",
+				"event_data": {
+					"game_ids": [7764]
+				},
+				"start_minimized": true
+			}
+		],
+		"protocol_override_domains": {
+			"googlesyndication": "http"
+		}
+	}
+}

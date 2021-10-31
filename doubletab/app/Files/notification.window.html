@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Double Tab - Notifications</title>
+	<link rel="stylesheet" href="assets/css/base.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/animate.min.css">
+	<style>
+		body {
+			color: #fff;
+			padding: 20px;
+		}
+		button {
+			width: 100%;
+			padding: 5px;
+			background: transparent;
+			cursor: pointer;
+			border: 1px solid transparent;
+		}
+		button:hover {
+			border-color: #fff;
+		}
+		#noty {
+			padding: 10px;
+			background: rgba(0, 0, 0, 0.7);
+			border-left: 4px solid #0089ff;
+			text-shadow: 1px 1px 2px #000;
+		}
+		.title {
+			margin-bottom: 5px;
+		}
+		.btn-group {
+			margin-top: 5px;
+		}
+		.btn-group button:not(:first-child) {
+			margin-left: 2px;
+		}
+	</style>
+</head>
+<body>
+	<div id="noty" class="column grow animated bounceInRight">
+		<h5 class="title">Double Tab</h5>
+		<p class="grow">Quick reminder, to show the app you have to press <span class="hotkey">Tab</span> two times, when you finish, press <span class="hotkey">Tab</span> again to hide it.</p>
+		<div class="btn-group row-space-between">
+			<button onclick="dontShowMeAgain()">Don't show me this message again</button>
+			<button onclick="closeWindow()">Close</button>
+		</div>
+	</div>
+
+	<script src="vendor/q.js"></script>
+	<script>
+		var windowODK;
+
+		q(overwolf.windows.getCurrentWindow)
+			.then(result => {
+				windowODK = result.window;
+
+				overwolf.games.getRunningGameInfo(info => {
+					if (!info) return;
+					var left = info.width - window.innerWidth;
+
+					overwolf.windows.changePosition(windowODK.id, left, 0);
+				});
+			});
+
+		q(overwolf.settings.getHotKey, 'toggle')
+			.then(result => {
+				document.querySelectorAll('.hotkey').forEach(element => element.innerText = result.hotkey);
+			});
+
+		setTimeout(() => {
+			var noty = document.getElementById('noty');
+
+			noty.classList.add('bounceOutRight');
+			noty.addEventListener('animationend', () => {
+				closeWindow();
+			});
+		}, 15000);
+
+		function dontShowMeAgain() {
+			localStorage.setItem('dontShowMeAgain', true);
+			closeWindow();
+		}
+
+		function closeWindow() {
+			overwolf.windows.close(windowODK.id);
+		}
+	</script>
+</body>
+</html>

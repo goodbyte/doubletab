@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Double Tab</title>
+	<link rel="stylesheet" href="assets/css/base.css">
+	<link rel="stylesheet" href="assets/css/csgo.min.css">
+	<link rel="stylesheet" href="assets/css/flags.min.css">
+	<link rel="stylesheet" href="assets/css/sweetalert.min.css.">
+	<style>
+		body {
+			color: #fff;
+			text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+		}
+		.sweet-alert {
+			text-shadow: none;
+		}
+	</style>
+</head>
+<body>
+	<app></app>
+
+	<script src="http://content.overwolf.com/libs/ads/latest/owads.min.js"></script>
+	<script src="vendor/q.js"></script>
+	<script src="vendor/sweetalert.min.js"></script>
+	<script src="vendor/riot+compiler.min.js"></script>
+	<script type="riot/tag" src="tags/app.tag"></script>
+	<script type="riot/tag" src="tags/profile.tag"></script>
+	<script>
+		riot.mount('*');
+	</script>
+
+	<!-- Google Analytics -->
+	<script>
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-102272587-3']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script');
+			ga.type = 'text/javascript';
+			ga.async = true;
+			ga.src = 'https://ssl.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+	<!-- End Google Analytics -->
+</body>
+</html>
